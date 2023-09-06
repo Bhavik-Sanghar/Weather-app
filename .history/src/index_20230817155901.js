@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import './Weather.css'; // Add this line for custom styles
-
+import MouseCircle from './Mouse';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,0 +1,43 @@
+.mouse-circle-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mouse-trail {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.trail-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 255, 0.3); /* Adjust color and opacity */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  animation: fadeTrail 0.5s infinite ease-out forwards;
+}
+
+@keyframes fadeTrail {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.mouse-circle {
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.1s ease-in-out;
+  z-index: 999;
+}

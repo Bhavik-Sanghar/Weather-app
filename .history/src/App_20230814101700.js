@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Weather.css';
 
-
 const Weather = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
@@ -90,7 +89,6 @@ const Weather = () => {
   };
 
   return (
-
     <div className={`weather-outer-container ${backgroundClass}`}>
             <div className="weather-inner-container">
       <h1 className="title">Weather App</h1>

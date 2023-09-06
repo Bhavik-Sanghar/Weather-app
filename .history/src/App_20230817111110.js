@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Weather.css';
-
+import MouseCircle from './Mouse';
 
 const Weather = () => {
   const [city, setCity] = useState('');
@@ -90,40 +90,38 @@ const Weather = () => {
   };
 
   return (
+    <><MouseCircle /><div className={`weather-outer-container ${backgroundClass}`}>
+      <div className="weather-inner-container">
+        <h1 className="title">Weather App</h1>
+        <form onSubmit={handleSubmit} className="form">
+          <input
+            type="text"
+            value={city}
+            onChange={handleCityChange}
+            placeholder="Enter city name"
+            className="input" />
+          <button type="submit" className="btn">
+            Get Weather
+          </button>
+        </form>
 
-    <div className={`weather-outer-container ${backgroundClass}`}>
-            <div className="weather-inner-container">
-      <h1 className="title">Weather App</h1>
-      <form onSubmit={handleSubmit} className="form">
-        <input
-          type="text"
-          value={city}
-          onChange={handleCityChange}
-          placeholder="Enter city name"
-          className="input"
-        />
-        <button type="submit" className="btn">
-          Get Weather
-        </button>
-      </form>
-
-      {weatherData && (
-        <div className="weather-info">
-          <h2 className="city-name">{weatherData.name}</h2>
-          <div className="weather-details">
-            <div className="weather-block">
-              <p className="temperature">Temperature: {weatherData.main.temp}°C</p>
-              <p className="description">Weather: {weatherData.weather[0].description}</p>
-            </div>
-            <div className="weather-block">
-              <p className="highlight">Humidity: {weatherData.main.humidity}%</p>
-              <p className="highlight">Wind Speed: {weatherData.wind.speed} m/s</p>
+        {weatherData && (
+          <div className="weather-info">
+            <h2 className="city-name">{weatherData.name}</h2>
+            <div className="weather-details">
+              <div className="weather-block">
+                <p className="temperature">Temperature: {weatherData.main.temp}°C</p>
+                <p className="description">Weather: {weatherData.weather[0].description}</p>
+              </div>
+              <div className="weather-block">
+                <p className="highlight">Humidity: {weatherData.main.humidity}%</p>
+                <p className="highlight">Wind Speed: {weatherData.wind.speed} m/s</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-    </div>
+        )}
+      </div>
+    </div></>
   );
 };
 

@@ -1,0 +1,9 @@
+#minicircle{
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  z-index: 999;
+  border-radius: 50%;
+  background-color:aliceblue;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Weather.css';
-
+import MouseCircle from './Mouse';
 
 const Weather = () => {
   const [city, setCity] = useState('');
@@ -92,6 +92,7 @@ const Weather = () => {
   return (
 
     <div className={`weather-outer-container ${backgroundClass}`}>
+      <MouseCircle/>
             <div className="weather-inner-container">
       <h1 className="title">Weather App</h1>
       <form onSubmit={handleSubmit} className="form">

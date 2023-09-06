@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Weather.css';
 
-
 const Weather = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
@@ -90,7 +89,6 @@ const Weather = () => {
   };
 
   return (
-
     <div className={`weather-outer-container ${backgroundClass}`}>
             <div className="weather-inner-container">
       <h1 className="title">Weather App</h1>
@@ -112,8 +110,8 @@ const Weather = () => {
           <h2 className="city-name">{weatherData.name}</h2>
           <div className="weather-details">
             <div className="weather-block">
-              <p className="temperature">Temperature: {weatherData.main.temp}°C</p>
-              <p className="description">Weather: {weatherData.weather[0].description}</p>
+              <p className="temperature">{weatherData.main.temp}°C</p>
+              <p className="description">{weatherData.weather[0].description}</p>
             </div>
             <div className="weather-block">
               <p className="highlight">Humidity: {weatherData.main.humidity}%</p>
