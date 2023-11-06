@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./Weather.css";
-import {
-  WiDaySunny,
-  WiDayCloudy,
-  WiCloud,
-  WiShowers,
-  WiThunderstorm,
-  WiSnow,
-  WiFog,
-} from "react-icons/wi";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Weather.css';
+import * as weatherIcons from 'react-icons/wi';
+
 
 const Weather = () => {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
-  const [backgroundClass, setBackgroundClass] = useState("");
+  const [backgroundClass, setBackgroundClass] = useState('');
 
-  const API_KEY = "e20ef824ca07d082e00b76746ec9a402"; // Replace with your own API key
+  const API_KEY = 'e20ef824ca07d082e00b76746ec9a402'; // Replace with your own API key
 
   useEffect(() => {
     updateBackground();
@@ -39,7 +32,7 @@ const Weather = () => {
 
   const fetchWeatherByLocation = () => {
     if (!navigator.geolocation) {
-      console.error("Geolocation is not supported by your browser");
+      console.error('Geolocation is not supported by your browser');
       return;
     }
 
@@ -49,7 +42,7 @@ const Weather = () => {
         fetchWeatherByCoordinates(latitude, longitude);
       },
       (error) => {
-        console.error("Error getting location:", error);
+        console.error('Error getting location:', error);
       }
     );
   };
@@ -78,20 +71,20 @@ const Weather = () => {
     if (!weatherData) return;
 
     const weatherCode = weatherData.weather[0].id;
-    let className = "";
+    let className = '';
 
     if (weatherCode >= 200 && weatherCode < 300) {
-      className = "thunderstorm";
+      className = 'thunderstorm';
     } else if (weatherCode >= 300 && weatherCode < 600) {
-      className = "rain";
+      className = 'rain';
     } else if (weatherCode >= 600 && weatherCode < 700) {
-      className = "snow";
+      className = 'snow';
     } else if (weatherCode >= 700 && weatherCode < 800) {
-      className = "atmosphere";
+      className = 'atmosphere';
     } else if (weatherCode === 800) {
-      className = "clear-sky";
+      className = 'clear-sky';
     } else {
-      className = "clouds";
+      className = 'clouds';
     }
 
     setBackgroundClass(className);
@@ -99,42 +92,42 @@ const Weather = () => {
 
   function getWeatherIcon(iconCode) {
     switch (iconCode) {
-      case "01d":
+      case '01d':
         return <WiDaySunny />;
-      case "02d":
+      case '02d':
         return <WiDayCloudy />;
-      case "03d":
+      case '03d':
         return <WiCloud />;
-      case "04d":
+      case '04d':
         return <WiCloud />;
-      case "09d":
+      case '09d':
         return <WiShowers />;
-      case "10d":
+      case '10d':
         return <WiShowers />;
-      case "11d":
+      case '11d':
         return <WiThunderstorm />;
-      case "13d":
+      case '13d':
         return <WiSnow />;
-      case "50d":
+      case '50d':
         return <WiFog />;
       // Nighttime icons
-      case "01n":
+      case '01n':
         return <WiDaySunny />;
-      case "02n":
+      case '02n':
         return <WiDayCloudy />;
-      case "03n":
+      case '03n':
         return <WiCloud />;
-      case "04n":
+      case '04n':
         return <WiCloud />;
-      case "09n":
+      case '09n':
         return <WiShowers />;
-      case "10n":
+      case '10n':
         return <WiShowers />;
-      case "11n":
+      case '11n':
         return <WiThunderstorm />;
-      case "13n":
+      case '13n':
         return <WiSnow />;
-      case "50n":
+      case '50n':
         return <WiFog />;
       default:
         return null;
@@ -142,47 +135,39 @@ const Weather = () => {
   }
 
   return (
-    <div className={`weather-outer-container ${backgroundClass}`}>
-      <div className="weather-inner-container">
-        <h1 className="title">Weather App</h1>
-        <form onSubmit={handleSubmit} className="form">
-          <input
-            type="text"
-            value={city}
-            onChange={handleCityChange}
-            placeholder="Enter city name"
-            className="input"
-          />
-          <button type="submit" className="btn">
-            Get Weather
-          </button>
-        </form>
 
-        {weatherData && (
-          <div className="weather-info">
-            <h2 className="city-name">{weatherData.name}</h2>
-            <div className="weather-details">
-              <div className="weather-block">
-                <p className="temperature">
-                  Temperature: {weatherData.main.temp}°C
-                </p>
-                <p className="description">
-                  Weather: {getWeatherIcon(weatherData.weather[0].icon)}{" "}
-                  {weatherData.weather[0].description}
-                </p>
-              </div>
-              <div className="weather-block">
-                <p className="highlight">
-                  Humidity: {weatherData.main.humidity}%
-                </p>
-                <p className="highlight">
-                  Wind Speed: {weatherData.wind.speed} m/s
-                </p>
-              </div>
+    <div className={`weather-outer-container ${backgroundClass}`}>
+            <div className="weather-inner-container">
+      <h1 className="title">Weather App</h1>
+      <form onSubmit={handleSubmit} className="form">
+        <input
+          type="text"
+          value={city}
+          onChange={handleCityChange}
+          placeholder="Enter city name"
+          className="input"
+        />
+        <button type="submit" className="btn">
+          Get Weather
+        </button>
+      </form>
+
+      {weatherData && (
+        <div className="weather-info">
+          <h2 className="city-name">{weatherData.name}</h2>
+          <div className="weather-details">
+            <div className="weather-block">
+              <p className="temperature">Temperature: {weatherData.main.temp}°C</p>
+              <p className="description">Weather: {getWeatherIcon(weatherData.weather[0].icon)} {weatherData.weather[0].description}</p>
+            </div>
+            <div className="weather-block">
+              <p className="highlight">Humidity: {weatherData.main.humidity}%</p>
+              <p className="highlight">Wind Speed: {weatherData.wind.speed} m/s</p>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
     </div>
   );
 };
